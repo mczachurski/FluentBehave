@@ -1,0 +1,44 @@
+﻿{
+  "version": "1.0.0-alpha1",
+  "authors": [ "@mczachurski" ],
+  "description": "FluentBahave.Tools is a simple ASP.NET Core application to generate C# code base on Gherkin feature files.",
+  "title": "FluentBehave.Tools",
+  "language": "C#",
+
+  "packOptions": {
+    "projectUrl": "https://github.com/mczachurski/FluentBehave",
+    "licenseUrl": "https://opensource.org/licenses/MIT"
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "outputName": "dotnet-fb"
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0-rc2-3002702"
+    },
+    "Microsoft.DotNet.Cli.Utils": "1.0.0-preview1-002702",
+    "Microsoft.DotNet.ProjectModel": "1.0.0-rc2-002702",
+    "Microsoft.Extensions.CommandLineUtils": "1.0.0-rc2-final",
+    "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc2-final"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "scripts": {
+    "postcompile": [
+      "dotnet pack --no-build --configuration %compile:Configuration%"
+    ]
+  }
+}
