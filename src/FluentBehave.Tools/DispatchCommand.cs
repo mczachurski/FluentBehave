@@ -1,4 +1,5 @@
-﻿using Microsoft.DotNet.Cli.Utils;
+﻿using FluentBehave.Tools.Model;
+using Microsoft.DotNet.Cli.Utils;
 using Microsoft.Extensions.CommandLineUtils;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
@@ -12,7 +13,7 @@ namespace FluentBehave.Tools
             var app = new CommandLineApplication(throwOnUnexpectedArg: false)
             {
                 Name = "dotnet feature",
-                FullName = "Feature Framework .NET CLI Commands"
+                FullName = "FluentBehave Tools for .NET CLI Commands"
             };
 
             var featureFileOption = app.Option(
@@ -26,7 +27,7 @@ namespace FluentBehave.Tools
             app.OnExecute(() =>
             {
                 string varsion = PlatformServices.Default.Application.ApplicationVersion;
-                Reporter.Output.WriteLine($"Feature Framework .NET CLI Commands ({varsion})".Yellow().Bold());
+                Reporter.Output.WriteLine($"FluentBehave Tools for .NET CLI Commands ({varsion})".Yellow().Bold());
 
                 if (!featureFileOption.HasValue())
                 {
@@ -47,6 +48,10 @@ namespace FluentBehave.Tools
 
                 Reporter.Output.WriteLine($"Feature: {featureFilePath}");
                 Reporter.Output.WriteLine($"Output: {outputDir}");
+
+                FeatureParser parser = new FeatureParser();
+                var featureText = File.ReadAllText(featureFilePath);
+                Feature feature = parser.Parse(featureText);
 
 
 
