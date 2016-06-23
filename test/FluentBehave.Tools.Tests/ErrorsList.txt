@@ -1,0 +1,125 @@
+﻿using FluentBehave;
+using System;
+
+namespace FluentBehave.Test
+{
+    [Feature("ErrorsList", "Errors list")]
+    public class ErrorsList
+    {
+        [Scenario("Administrator has list of throwned exceptions")]
+        public void AdministratorHasListOfThrownedExceptions()
+        {
+            GivenUserWithEmailHasAdministratorRole("admin@unit4.com");
+            GivenInTheDatabaseThereAreExceptions();
+            WhenHeRequestsForTheListOfExceptions();
+            ThenApplicationReturnsListOfExistingExceptions();
+            ThenHeCanCheckDateWhenExceptionOccured();
+            ThenHeCanCheckTypeOfOccuredException();
+            ThenHeCanCheckEmailOfUserWhoGetTheException();
+        }
+
+        [Scenario("Administrator can check exception's details")]
+        public void AdministratorCanCheckExceptionsDetails()
+        {
+            GivenUserWithEmailHasAdministratorRole("admin@unit4.com");
+            GivenInTheDatabaseThereAreExceptions();
+            WhenHeRequestsForExceptionsDetails();
+            ThenApplicationReturnsExceptionsDetails();
+            ThenHeCanCheckDateWhenExceptionOccured();
+            ThenHeCanCheckTypeOfOccuredException();
+            ThenHeCanCheckEmailOfUserWhoGetTheException();
+            ThenHeCanCheckStackTraceOfOccuredException();
+        }
+
+        [Scenario("Access to list of exceptions should be restricted only to administrator")]
+        public void AccessToListOfExceptionsShouldBeRestrictedOnlyToAdministrator()
+        {
+            GivenUserWithEmailHasConsultantRole("deann.bender@unit4.test");
+            GivenInTheDatabaseThereAreExceptions();
+            WhenHeRequestsForTheListOfExceptions();
+            ThenHeDoesntHaveAccessToData();
+        }
+
+        [Scenario("Access to exception's details should be restricted only to administrator")]
+        public void AccessToExceptionsDetailsShouldBeRestrictedOnlyToAdministrator()
+        {
+            GivenUserWithEmailHasConsultantRole("deann.bender@unit4.test");
+            GivenInTheDatabaseThereAreExceptions();
+            WhenHeRequestsForExceptionsDetails();
+            ThenHeDoesntHaveAccessToData();
+        }
+
+        [Given("User with email has administrator role")]
+        private void GivenUserWithEmailHasAdministratorRole(string p0)
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Given("In the database there are exceptions")]
+        private void GivenInTheDatabaseThereAreExceptions()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [When("He requests for the list of exceptions")]
+        private void WhenHeRequestsForTheListOfExceptions()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("Application returns list of existing exceptions")]
+        private void ThenApplicationReturnsListOfExistingExceptions()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He can check date when exception occured")]
+        private void ThenHeCanCheckDateWhenExceptionOccured()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He can check type of occured exception")]
+        private void ThenHeCanCheckTypeOfOccuredException()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He can check email of user who get the exception")]
+        private void ThenHeCanCheckEmailOfUserWhoGetTheException()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [When("He requests for exception's details")]
+        private void WhenHeRequestsForExceptionsDetails()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("Application returns exception's details")]
+        private void ThenApplicationReturnsExceptionsDetails()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He can check stack trace of occured exception")]
+        private void ThenHeCanCheckStackTraceOfOccuredException()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Given("User with email has consultant role")]
+        private void GivenUserWithEmailHasConsultantRole(string p0)
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He doesn't have access to data")]
+        private void ThenHeDoesntHaveAccessToData()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+    }
+}

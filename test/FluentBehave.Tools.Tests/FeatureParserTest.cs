@@ -8,7 +8,7 @@ namespace FluentBehave.Tools.Tests
         [Fact]
         public void MustReadFeatureTitle()
         {
-            var featureText = File.ReadAllText("UnitTest.feature");
+            var featureText = File.ReadAllText("ResettingPassword.feature");
             var featureParser = new FeatureParser();
 
             var feature = featureParser.Parse(featureText);
@@ -19,7 +19,7 @@ namespace FluentBehave.Tools.Tests
         [Fact]
         public void MustReadAllScenarios()
         {
-            var featureText = File.ReadAllText("UnitTest.feature");
+            var featureText = File.ReadAllText("ResettingPassword.feature");
             var featureParser = new FeatureParser();
 
             var feature = featureParser.Parse(featureText);
@@ -30,7 +30,7 @@ namespace FluentBehave.Tools.Tests
         [Fact]
         public void MustReadScenarioTitle()
         {
-            var featureText = File.ReadAllText("UnitTest.feature");
+            var featureText = File.ReadAllText("ResettingPassword.feature");
             var featureParser = new FeatureParser();
 
             var feature = featureParser.Parse(featureText);
@@ -46,7 +46,7 @@ namespace FluentBehave.Tools.Tests
         [Fact]
         public void ScenarioMustContainsGivens()
         {
-            var featureText = File.ReadAllText("UnitTest.feature");
+            var featureText = File.ReadAllText("ResettingPassword.feature");
             var featureParser = new FeatureParser();
 
             var feature = featureParser.Parse(featureText);
@@ -59,7 +59,7 @@ namespace FluentBehave.Tools.Tests
         [Fact]
         public void ScenarioMustContainsWhens()
         {
-            var featureText = File.ReadAllText("UnitTest.feature");
+            var featureText = File.ReadAllText("ResettingPassword.feature");
             var featureParser = new FeatureParser();
 
             var feature = featureParser.Parse(featureText);
@@ -72,7 +72,7 @@ namespace FluentBehave.Tools.Tests
         [Fact]
         public void ScenarioMustContainsThens()
         {
-            var featureText = File.ReadAllText("UnitTest.feature");
+            var featureText = File.ReadAllText("ResettingPassword.feature");
             var featureParser = new FeatureParser();
 
             var feature = featureParser.Parse(featureText);

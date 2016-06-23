@@ -3,7 +3,7 @@
     public class Templates
     {
         public const string ClassTemplate =
-            "using FluentBehaviour;\r\n" + 
+            "using FluentBehave;\r\n" + 
             "using System;\r\n" +
 			"\r\n" +
             "namespace <%NAMESPACE%>\r\n" +

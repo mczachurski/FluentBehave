@@ -72,6 +72,9 @@ namespace FluentBehave.Tools
         private string GetMethodName(string title)
         {
             title = title.Replace("-", " ");
+            Regex rgx = new Regex("[^a-zA-Z0-9 ]");
+            title = rgx.Replace(title, string.Empty);
+
             var parts = title.Split(' ');
             var methodName = string.Empty;
             for (int i = 0; i < parts.Length; ++i)
