@@ -1,131 +1,77 @@
-﻿using FluentBehave.Tools.Model;
+﻿using FluentBehave.Tools.ClassModel;
+using FluentBehave.Tools.GherkinModel;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace FluentBehave.Tools
 {
     public class ClassGenerator
     {
-        class Method
-        {
-            public Method()
-            {
-                Parameters = new Dictionary<string, string>();
-            }
+        private readonly Feature _feature;
+        private readonly string _className;
+        private readonly string _namespaceName;
+        private string _classBody;
+        private Dictionary<string, Method> _methods;
 
-            public string Title { get; set; }
-            public string Name { get; set; }
-            public string Prefix { get; set; }
-            public Dictionary<string, string> Parameters { get; set; }
+        public ClassGenerator(Feature feature, string className, string namespaceName)
+        {
+            _feature = feature;
+            _className = className;
+            _namespaceName = namespaceName;
         }
 
-        public string Generate(Feature feature, string className, string namespaceName)
+        public string Generate()
         {
-            var classTemplate = Templates.ClassTemplate;
+            _classBody = Templates.ClassTemplate;
+            _methods = new Dictionary<string, Method>();
 
-            classTemplate = classTemplate.Replace("<%NAMESPACE%>", namespaceName);
-            classTemplate = classTemplate.Replace("<%NAME%>", className);
-            classTemplate = classTemplate.Replace("<%DESCRIPTION%>", feature.Text);
-            classTemplate = classTemplate.Replace("<%CLASSNAME%>", className);
+            ReplaceClassProperties();
+            GenerateScenanrios();
+            GeneratePrivateMethods();
 
-            Dictionary<string, Method> methods = new Dictionary<string, Method>();
+            return _classBody;
+        }
+
+        private void ReplaceClassProperties()
+        {
+            _classBody = _classBody.Replace("<%NAMESPACE%>", _namespaceName);
+            _classBody = _classBody.Replace("<%NAME%>", _className);
+            _classBody = _classBody.Replace("<%DESCRIPTION%>", _feature.Text.UppercaseFirst());
+            _classBody = _classBody.Replace("<%CLASSNAME%>", _className);
+        }
+
+        private void GenerateScenanrios()
+        {
             var scenarioBuilder = new StringBuilder();
-            foreach(var scenario in feature.ScenarioCollection)
+            foreach (var scenario in _feature.ScenarioCollection)
             {
-                var scenarioTemplate = Templates.ScenarioTemplate;
-                scenarioTemplate = scenarioTemplate.Replace("<%SCENARIOTITLE%>", scenario.Title);
-                var scenarioMethodName = GetMethodName(scenario.Title);
-                scenarioTemplate = scenarioTemplate.Replace("<%SCENARIONAME%>", scenarioMethodName);
+                var scenarioGenerator = new ScenarioGenerator(scenario);
+                var scenarioMethod = scenarioGenerator.Generate();
 
-                var methodBodyBuilder = new StringBuilder();
-                CreateScenarioMethods(scenario.GivenCollection, GherkinKeywords.Given, methods, methodBodyBuilder);
-                CreateScenarioMethods(scenario.WhenCollection, GherkinKeywords.When, methods, methodBodyBuilder);
-                CreateScenarioMethods(scenario.ThenCollection, GherkinKeywords.Then, methods, methodBodyBuilder);
-
-                scenarioTemplate = scenarioTemplate.Replace("<%SCENARIOBODY%>", methodBodyBuilder.ToString());
-                scenarioBuilder.Append(scenarioTemplate);
-            }
-
-            classTemplate = classTemplate.Replace("<%SCENARIOS%>", scenarioBuilder.ToString());
-
-            var methodsBuilder = new StringBuilder();
-            foreach (var method in methods)
-            {
-                var methodTemplate = Templates.MethodTemplate;
-                methodTemplate = methodTemplate.Replace("<%METHODTITLE%>", method.Value.Title);
-                methodTemplate = methodTemplate.Replace("<%METHODNAME%>", method.Value.Name);
-                methodTemplate = methodTemplate.Replace("<%METHODPREFIX%>", method.Value.Prefix);
-
-                string parameters = string.Join(",", method.Value.Parameters.Keys.Select(x => "string " + x));
-                methodTemplate = methodTemplate.Replace("<%METHODPARAMS%>", parameters);
-                methodsBuilder.Append(methodTemplate);
-            }
-
-            classTemplate = classTemplate.Replace("<%METHODS%>", methodsBuilder.ToString());
-
-            return classTemplate;
-        }
-
-        private void CreateScenarioMethods(IList<Sentence> sentences, string prefix, Dictionary<string, Method> methods, StringBuilder methodBodyBuilder)
-        {
-            foreach (var given in sentences)
-            {
-                var method = GetMethod(given.Text, prefix);
-                methodBodyBuilder.AppendLine("            " + method.Name + "(" + string.Join(",", method.Parameters.Values) + ");");
-
-                if(!methods.ContainsKey(method.Name))
+                scenarioBuilder.Append(scenarioMethod.Body);
+                foreach (var method in scenarioMethod.Methods)
                 {
-                    methods.Add(method.Name, method);
+                    if (!_methods.ContainsKey(method.Name))
+                    {
+                        _methods.Add(method.Name, method);
+                    }
                 }
             }
+
+            _classBody = _classBody.Replace("<%SCENARIOS%>", scenarioBuilder.ToString());
         }
 
-        private Method GetMethod(string title, string prefix)
+        private void GeneratePrivateMethods()
         {
-            var method = new Method();
-            method.Prefix = prefix;
-            method.Title = title;
-
-            string methodName = GetMethodName(title);
-
-            var stringRegex = new Regex("\"([a-zA-Z0-9!@#$%^&*. ]*)\"");
-            var stringMatches = stringRegex.Matches(methodName);
-            int index = 0;
-            foreach (Match match in stringMatches)
+            var methodsBuilder = new StringBuilder();
+            foreach (var method in _methods)
             {
-                method.Parameters.Add($"p{index}", match.Value);
-                methodName = methodName.Remove(match.Index, match.Length);
-                index++;
+                var methodGenerator = new MethodGenerator(method.Value);
+                var generated = methodGenerator.Generate();
+                methodsBuilder.Append(generated.Body);
             }
 
-            method.Name = prefix + methodName;
-            return method;
-        }
-
-        private string GetMethodName(string title)
-        {
-            title = title.Replace("-", " ");
-            var parts = title.Split(' ');
-            var methodName = string.Empty;
-            for (int i = 0; i < parts.Length; ++i)
-            {
-                methodName += UppercaseFirst(parts[i]);
-            }
-
-            return methodName;
-        }
-
-        private string UppercaseFirst(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-            {
-                return string.Empty;
-            }
-            char[] a = s.ToCharArray();
-            a[0] = char.ToUpper(a[0]);
-            return new string(a);
+            _classBody = _classBody.Replace("<%METHODS%>", methodsBuilder.ToString());
         }
     }
 }

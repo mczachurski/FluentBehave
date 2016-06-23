@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FluentBehave.Tools.Model
+﻿namespace FluentBehave.Tools.GherkinModel
 {
     public class Sentence
     {

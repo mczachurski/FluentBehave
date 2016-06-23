@@ -1,4 +1,4 @@
-﻿namespace FluentBehave.Tools.Model
+﻿namespace FluentBehave.Tools.GherkinModel
 {
     public class GherkinKeywords
     {

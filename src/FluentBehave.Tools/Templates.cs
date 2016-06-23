@@ -1,39 +1,35 @@
-﻿using System;
-
-namespace FluentBehave.Tools
+﻿namespace FluentBehave.Tools
 {
     public class Templates
     {
         public const string ClassTemplate =
-            "using FluentBehaviour;\n" + 
-            "using System;\n" +
-			"\n" +
-            "namespace <%NAMESPACE%>\n" +
-            "{\n" +
-            "\n" +
-            "    [Feature(\"<%NAME%>\", \"<%DESCRIPTION%>\")]\n" +
-            "    public class <%CLASSNAME%>\n" +
-            "    {\n" +
-            "\n" +
+            "using FluentBehaviour;\r\n" + 
+            "using System;\r\n" +
+			"\r\n" +
+            "namespace <%NAMESPACE%>\r\n" +
+            "{\r\n" +
+            "    [Feature(\"<%NAME%>\", \"<%DESCRIPTION%>\")]\r\n" +
+            "    public class <%CLASSNAME%>\r\n" +
+            "    {\r\n" +
 			"<%SCENARIOS%>" +
 			"<%METHODS%>" +
-            "    }\n" +
+            "    }\r\n" +
             "}";
 
         public const string ScenarioTemplate =
-            "        [Scenario(\"<%SCENARIOTITLE%>\")]\n" +
-            "        public void <%SCENARIONAME%>()\n" +
-            "        {\n" +
+            "        [Scenario(\"<%SCENARIOTITLE%>\")]\r\n" +
+            "        public void <%SCENARIONAME%>()\r\n" +
+            "        {\r\n" +
             "<%SCENARIOBODY%>" +
-            "        }\n" +
-            "\n";
+            "        }\r\n" +
+            "\r\n";
 
         public const string MethodTemplate =
-            "        [<%METHODPREFIX%>(\"<%METHODTITLE%>\")]\n" +
-            "        private void <%METHODNAME%>(<%METHODPARAMS%>)\n" +
-            "        {\n" +
-            "            throw new NotImplementedException(\"Implement me!\");\n" +
-            "        }\n" +
-            "\n";
+            "        [<%METHODPREFIX%>(\"<%METHODTITLE%>\")]\r\n" +
+            "        private void <%METHODNAME%>(<%METHODPARAMS%>)\r\n" +
+            "        {\r\n" +
+            "            throw new NotImplementedException(\"Implement me!\");\r\n" +
+            "        }\r\n" +
+            "\r\n";
     }
 }

@@ -1,0 +1,155 @@
+﻿using FluentBehaviour;
+using System;
+
+namespace FluentBehave.Test
+{
+    [Feature("UnitTest", "Resseting password")]
+    public class UnitTest
+    {
+        [Scenario("User have to receive email when he resseting password")]
+        public void UserHaveToReceiveEmailWhenHeRessetingPassword()
+        {
+            GivenUserWithEmailHasAccessToTheSystem("allen.nixon@soldoit.test");
+            GivenHisPasswordIs("admin");
+            WhenHeEntersEmail("allen.nixon@soldoit.test");
+            WhenHeRequestsForEmailWithFurtherInstructions();
+            ThenHeReceiveEmailMessage();
+            ThenEmailContainsLinkToSetNewPassword();
+        }
+
+        [Scenario("User can change his password")]
+        public void UserCanChangeHisPassword()
+        {
+            GivenEmailIsSentToExistingUser("hunter.hansen@soltexon.test");
+            WhenHeEntersEmail("hunter.hansen@soltexon.test");
+            WhenHeEntersNewPassword("P@ssword!1");
+            WhenHeRequestsForChangingPassword();
+            ThenHeCanSignInToSystemUsingNewCredentials();
+        }
+
+        [Scenario("User enters not existing email when he resseting password")]
+        public void UserEntersNotExistingEmailWhenHeRessetingPassword()
+        {
+            GivenUserWithEmailHasAccessToTheSystem("allen.nixon@soldoit.test");
+            WhenHeEntersEmail("notexisting@unit4.com");
+            WhenHeRequestsForEmailWithFurtherInstructions();
+            ThenHeCannotReceiveEmailMessageFromTheSystem();
+        }
+
+        [Scenario("User cannot change password without email from the system")]
+        public void UserCannotChangePasswordWithoutEmailFromTheSystem()
+        {
+            GivenUserWithEmailHasAccessToTheSystem("allen.nixon@soldoit.test");
+            GivenHeDoesn'tHaveEmailFromSystemWithInformation();
+            WhenHeEntersEmail("allen.nixon@soldoit.test");
+            WhenHeEntersNewPassword("P@ssword!1");
+            WhenHeRequestsForChangingPassword();
+            ThenTheNewPasswordIsNotSet();
+        }
+
+        [Scenario("User cannot change password when he do mistake in email address")]
+        public void UserCannotChangePasswordWhenHeDoMistakeInEmailAddress()
+        {
+            GivenEmailIsSentToExistingUser("hunter.hansen@soltexon.test");
+            WhenHeEntersEmail("notexisting@unit4.com");
+            WhenHeEntersNewPassword("P@ssword!1");
+            WhenHeRequestsForChangingPassword();
+            ThenTheNewPasswordIsNotSet();
+        }
+
+        [Scenario("Password not according to policy")]
+        public void PasswordNotAccordingToPolicy()
+        {
+            GivenEmailIsSentToExistingUser("hunter.hansen@soltexon.test");
+            WhenHeEntersEmail("hunter.hansen@soltexon.test");
+            WhenHeEntersNewPassword("a");
+            WhenHeRequestsForChangingPassword();
+            ThenThereIsMessageThatPasswordIsToShort();
+        }
+
+        [Given("User with email has access to the system")]
+        private void GivenUserWithEmailHasAccessToTheSystem(string p0)
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Given("His password is")]
+        private void GivenHisPasswordIs(string p0)
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [When("He enters email")]
+        private void WhenHeEntersEmail(string p0)
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [When("He requests for email with further instructions")]
+        private void WhenHeRequestsForEmailWithFurtherInstructions()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He receive email message")]
+        private void ThenHeReceiveEmailMessage()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("Email contains link to set new password")]
+        private void ThenEmailContainsLinkToSetNewPassword()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Given("Email is sent to existing user")]
+        private void GivenEmailIsSentToExistingUser(string p0)
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [When("He enters new password")]
+        private void WhenHeEntersNewPassword(string p0)
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [When("He requests for changing password")]
+        private void WhenHeRequestsForChangingPassword()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He can sign-in to system using new credentials")]
+        private void ThenHeCanSignInToSystemUsingNewCredentials()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("He cannot receive email message from the system")]
+        private void ThenHeCannotReceiveEmailMessageFromTheSystem()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Given("He doesn't have email from system with information")]
+        private void GivenHeDoesn'tHaveEmailFromSystemWithInformation()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("The new password is not set")]
+        private void ThenTheNewPasswordIsNotSet()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+        [Then("There is message that password is to short")]
+        private void ThenThereIsMessageThatPasswordIsToShort()
+        {
+            throw new NotImplementedException("Implement me!");
+        }
+
+    }
+}

@@ -1,4 +1,4 @@
-﻿using FluentBehave.Tools.Model;
+﻿using FluentBehave.Tools.GherkinModel;
 using System.Collections.Generic;
 
 namespace FluentBehave.Tools
