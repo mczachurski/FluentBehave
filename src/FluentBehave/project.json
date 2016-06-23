@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0-alpha3",
+  "version": "1.0.0-beta1",
   "authors": [ "@mczachurski" ],
   "description": "FluentBahave is a simple ASP.NET Core framework for Gherkin feature files.",
   "title": "FluentBehave",
