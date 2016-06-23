@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FluentBehave.Tools": {
+      "commandName": "Project",
+      "commandLineArgs": "-h"
+    }
+  }
+}

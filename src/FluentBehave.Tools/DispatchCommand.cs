@@ -20,22 +20,29 @@ namespace FluentBehave.Tools
                 "-f|--feature <FEATURE_FILE>",
                 "Feature file which be translated", CommandOptionType.SingleValue);
 
-            var outputOption = app.Option(
-                "-o|--output <OUTPUT_DIR>",
-                "Directory in which to find outputs", CommandOptionType.SingleValue);
-
             var namespaceOption = app.Option(
                 "-n|--namespace <NAMESPACE>",
                 "Namespace for new C# class", CommandOptionType.SingleValue);
+
+            var outputOption = app.Option(
+                "-o|--output <OUTPUT_DIR>",
+                "Directory in which to find outputs", CommandOptionType.SingleValue);
 
             var classOption = app.Option(
                 "-c|--class <CLASS_NMAE>",
                 "Name of new C# class", CommandOptionType.SingleValue);
 
+            var helpOption = app.Option(
+                "-h|--help",
+                "This help", CommandOptionType.NoValue);
+
             app.OnExecute(() =>
             {
-                string varsion = PlatformServices.Default.Application.ApplicationVersion;
-                Reporter.Output.WriteLine($"FluentBehave Tools for .NET CLI Commands ({varsion})".Yellow().Bold());
+                if(helpOption.HasValue())
+                {
+                    app.ShowHelp();
+                    return 0;
+                }
 
                 if (!featureFileOption.HasValue())
                 {
