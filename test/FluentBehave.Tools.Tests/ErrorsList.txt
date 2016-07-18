@@ -9,7 +9,7 @@ namespace FluentBehave.Test
         [Scenario("Administrator has list of throwned exceptions")]
         public void AdministratorHasListOfThrownedExceptions()
         {
-            GivenUserWithEmailHasAdministratorRole("admin@unit4.com");
+            GivenUserWithEmailHasRole("Administrator","admin@unit4.com");
             GivenInTheDatabaseThereAreExceptions();
             WhenHeRequestsForTheListOfExceptions();
             ThenApplicationReturnsListOfExistingExceptions();
@@ -21,7 +21,7 @@ namespace FluentBehave.Test
         [Scenario("Administrator can check exception's details")]
         public void AdministratorCanCheckExceptionsDetails()
         {
-            GivenUserWithEmailHasAdministratorRole("admin@unit4.com");
+            GivenUserWithEmailHasRole("Administrator","admin@unit4.com");
             GivenInTheDatabaseThereAreExceptions();
             WhenHeRequestsForExceptionsDetails();
             ThenApplicationReturnsExceptionsDetails();
@@ -34,7 +34,7 @@ namespace FluentBehave.Test
         [Scenario("Access to list of exceptions should be restricted only to administrator")]
         public void AccessToListOfExceptionsShouldBeRestrictedOnlyToAdministrator()
         {
-            GivenUserWithEmailHasConsultantRole("deann.bender@unit4.test");
+            GivenUserWithEmailHasRole("Consultant","deann.bender@unit4.test");
             GivenInTheDatabaseThereAreExceptions();
             WhenHeRequestsForTheListOfExceptions();
             ThenHeDoesntHaveAccessToData();
@@ -43,14 +43,14 @@ namespace FluentBehave.Test
         [Scenario("Access to exception's details should be restricted only to administrator")]
         public void AccessToExceptionsDetailsShouldBeRestrictedOnlyToAdministrator()
         {
-            GivenUserWithEmailHasConsultantRole("deann.bender@unit4.test");
+            GivenUserWithEmailHasRole("Consultant","deann.bender@unit4.test");
             GivenInTheDatabaseThereAreExceptions();
             WhenHeRequestsForExceptionsDetails();
             ThenHeDoesntHaveAccessToData();
         }
 
-        [Given("User with email has administrator role")]
-        private void GivenUserWithEmailHasAdministratorRole(string p0)
+        [Given("User with email has role")]
+        private void GivenUserWithEmailHasRole(string p0,string p1)
         {
             throw new NotImplementedException("Implement me!");
         }
@@ -105,12 +105,6 @@ namespace FluentBehave.Test
 
         [Then("He can check stack trace of occured exception")]
         private void ThenHeCanCheckStackTraceOfOccuredException()
-        {
-            throw new NotImplementedException("Implement me!");
-        }
-
-        [Given("User with email has consultant role")]
-        private void GivenUserWithEmailHasConsultantRole(string p0)
         {
             throw new NotImplementedException("Implement me!");
         }

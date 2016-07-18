@@ -1,6 +1,7 @@
 ﻿using FluentBehave.Tools.ClassModel;
 using FluentBehave.Tools.GherkinModel;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -56,7 +57,7 @@ namespace FluentBehave.Tools
             var stringRegex = new Regex("\"([a-zA-Z0-9!@#$%^&*. ]*)\"");
             var stringMatches = stringRegex.Matches(method.ClearTitle);
             int index = 0;
-            foreach (Match match in stringMatches)
+            foreach (Match match in stringMatches.OfType<Match>().OrderByDescending(i => i.Index))
             {
                 method.Parameters.Add($"p{index}", match.Value);
                 method.ClearTitle = method.ClearTitle.Remove(match.Index, match.Length);
