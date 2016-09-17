@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0-beta4",
+  "version": "1.0.0-beta5",
   "authors": [ "@mczachurski" ],
   "description": "FluentBahave.Tools is a simple ASP.NET Core application to generate C# code base on Gherkin feature files.",
   "title": "FluentBehave.Tools",
@@ -18,10 +18,10 @@
   "dependencies": {
     "Microsoft.NETCore.App": {
       "type": "platform",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
-    "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
+    "Microsoft.DotNet.ProjectModel": "1.0.0-rc4-003206",
     "Microsoft.Extensions.CommandLineUtils": "1.0.0",
     "Microsoft.Extensions.PlatformAbstractions": "1.0.0"
   },
