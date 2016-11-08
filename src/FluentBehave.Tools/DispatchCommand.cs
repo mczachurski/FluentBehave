@@ -1,7 +1,6 @@
 ﻿using FluentBehave.Tools.GherkinModel;
 using Microsoft.DotNet.Cli.Utils;
 using Microsoft.Extensions.CommandLineUtils;
-using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 
 namespace FluentBehave.Tools
