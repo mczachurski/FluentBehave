@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0-beta8",
+  "version": "1.0.0-beta9",
 
   "buildOptions": {
     "preserveCompilationContext": true,
@@ -13,11 +13,11 @@
     },
     "dotnet-test-xunit": "2.2.0-*",
     "xunit": "2.1.0-*",
-    "FluentBehave.Tools": "1.0.0-beta8"
+    "FluentBehave.Tools": "1.0.0-beta9"
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "imports": [
         "dotnet5.6",
         "dnxcore50",
