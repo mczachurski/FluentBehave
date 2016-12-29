@@ -15,7 +15,7 @@ Then he receive email message
 Scenario: User can change his password
 Given Email is sent to existing user "hunter.hansen@soltexon.test"
 When he enters email "hunter.hansen@soltexon.test"
-	And he enters new password "P@ssword!1"
+	And he enters new password "P@ssword!1\*"
 	And he requests for changing password
 Then he can sign-in to system using new credentials
 
@@ -29,14 +29,14 @@ Scenario: User cannot change password without email from the system
 Given user with email "allen.nixon@soldoit.test" has access to the system "some-system"
 	And he doesn't have email from system with information
 When he enters email "allen.nixon@soldoit.test"
-	And he enters new password "P@ssword!1"
+	And he enters new password "P@ssword!1\*"
 	And he requests for changing password
 Then the new password is not set
 
 Scenario: User cannot change password when he do mistake in email address
 Given Email is sent to existing user "hunter.hansen@soltexon.test"
 When he enters email "notexisting@unit4.com"
-	And he enters new password "P@ssword!1"
+	And he enters new password "P@ssword!1\*"
 	And he requests for changing password
 Then the new password is not set
 

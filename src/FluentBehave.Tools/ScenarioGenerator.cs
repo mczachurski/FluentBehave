@@ -53,7 +53,7 @@ namespace FluentBehave.Tools
             method.Title = title;
             method.ClearTitle = title;
 
-            var stringRegex = new Regex("\"([a-zA-Z0-9!@#$%^&*-. ]*)\"");
+            var stringRegex = new Regex("\"([a-zA-Z0-9\\\\/!@#$%^&*-. ]*)\"");
             var stringMatches = stringRegex.Matches(method.ClearTitle);
             int index = stringMatches.Count - 1;
             foreach (Match match in stringMatches.OfType<Match>().OrderByDescending(i => i.Index))
