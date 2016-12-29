@@ -13,9 +13,9 @@ namespace FluentBehave.Tools.Tests
             var feature = featureParser.Parse(featureText);
 
             var classGenerator = new ClassGenerator(feature, "ResettigPassword", "FluentBehave.Test");
-            var classBody = classGenerator.Generate();
+            var classBody = classGenerator.Generate().Replace("\r", "");
 
-            var classText = File.ReadAllText("ResettingPassword.txt");
+            var classText = File.ReadAllText("ResettingPassword.txt").Replace("\r", "");
             Assert.Equal(classText, classBody);
         }
 
@@ -27,9 +27,9 @@ namespace FluentBehave.Tools.Tests
             var feature = featureParser.Parse(featureText);
 
             var classGenerator = new ClassGenerator(feature, "ErrorsList", "FluentBehave.Test");
-            var classBody = classGenerator.Generate();
+            var classBody = classGenerator.Generate().Replace("\r", "");
 
-            var classText = File.ReadAllText("ErrorsList.txt");
+            var classText = File.ReadAllText("ErrorsList.txt").Replace("\r", "");
             Assert.Equal(classText, classBody);
         }
     }

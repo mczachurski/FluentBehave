@@ -52,7 +52,7 @@ namespace FluentBehave.Tools.Tests
             var feature = featureParser.Parse(featureText);
 
             Assert.Equal(2, feature.ScenarioCollection[0].GivenCollection.Count);
-            Assert.Equal("user with email \"allen.nixon@soldoit.test\" has access to the system", feature.ScenarioCollection[0].GivenCollection[0].Text);
+            Assert.Equal("user with email \"allen.nixon@soldoit.test\" has access to the system \"some-system\"", feature.ScenarioCollection[0].GivenCollection[0].Text);
             Assert.Equal("his password is \"admin\"", feature.ScenarioCollection[0].GivenCollection[1].Text);
         }
 

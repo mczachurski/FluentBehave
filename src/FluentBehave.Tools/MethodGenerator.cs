@@ -19,7 +19,7 @@ namespace FluentBehave.Tools
             methodTemplate = methodTemplate.Replace("<%METHODNAME%>", _method.Name);
             methodTemplate = methodTemplate.Replace("<%METHODPREFIX%>", _method.Prefix);
 
-            string parameters = string.Join(",", _method.Parameters.Keys.Select(x => "string " + x));
+            string parameters = string.Join(", ", _method.Parameters.Keys.OrderBy(x => x).Select(x => "string " + x));
             methodTemplate = methodTemplate.Replace("<%METHODPARAMS%>", parameters);
 
             _method.Body = methodTemplate;

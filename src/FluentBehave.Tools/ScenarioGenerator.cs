@@ -32,7 +32,6 @@ namespace FluentBehave.Tools
 
             scenarioTemplate = scenarioTemplate.Replace("<%SCENARIOBODY%>", methodBodyBuilder.ToString());
 
-
             scenarioMethod.Body = scenarioTemplate;
             return scenarioMethod;
         }
@@ -42,7 +41,7 @@ namespace FluentBehave.Tools
             foreach (var given in sentences)
             {
                 var method = GetMethod(given.Text, prefix);
-                methodBodyBuilder.AppendLine("            " + method.Name + "(" + string.Join(",", method.Parameters.Values) + ");");
+                methodBodyBuilder.AppendLine("            " + method.Name + "(" + string.Join(", ", method.Parameters.OrderBy(x => x.Key).Select(x => x.Value)) + ");");
                 scenarioMethod.Methods.Add(method);
             }
         }
@@ -54,14 +53,14 @@ namespace FluentBehave.Tools
             method.Title = title;
             method.ClearTitle = title;
 
-            var stringRegex = new Regex("\"([a-zA-Z0-9!@#$%^&*. ]*)\"");
+            var stringRegex = new Regex("\"([a-zA-Z0-9!@#$%^&*-. ]*)\"");
             var stringMatches = stringRegex.Matches(method.ClearTitle);
-            int index = 0;
+            int index = stringMatches.Count - 1;
             foreach (Match match in stringMatches.OfType<Match>().OrderByDescending(i => i.Index))
             {
                 method.Parameters.Add($"p{index}", match.Value);
                 method.ClearTitle = method.ClearTitle.Remove(match.Index, match.Length);
-                index++;
+                index--;
             }
 
             string methodName = GetMethodName(method.ClearTitle);
