@@ -4,9 +4,9 @@
     <Description>FluentBahave.Tools is a simple ASP.NET Core application to generate C# code base on Gherkin feature files.</Description>
     <AssemblyTitle>FluentBehave.Tools</AssemblyTitle>
     <NeutralLanguage>C#</NeutralLanguage>
-    <VersionPrefix>1.0.0-rc1</VersionPrefix>
+    <VersionPrefix>1.0.0-rc2</VersionPrefix>
     <Authors>@mczachurski</Authors>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyName>dotnet-fb</AssemblyName>
     <OutputType>Exe</OutputType>
