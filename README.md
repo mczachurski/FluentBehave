@@ -1,5 +1,12 @@
 # FluentBehave
 
+| branch  | status |
+|---------|--------|
+| master  | [![Build status](https://img.shields.io/appveyor/ci/marcinczachurski/fluentbehave/master.svg)](https://ci.appveyor.com/project/marcinczachurski/fluentbehave/branch/master) |
+| develop | [![Build status](https://img.shields.io/appveyor/ci/marcinczachurski/fluentbehave/develop.svg)](https://ci.appveyor.com/project/marcinczachurski/fluentbehave/branch/develop) |
+
+ 
+
 FluentBehave is a simple application which can convert Gherkin scenarios to C# classes. It's written as a .NET CLI Command Tool (very similar to EntityFramework Command Tool).
 
 ## Getting started
@@ -62,11 +69,11 @@ After restoring all dependencies you can run ```FluentBehave``` from console.
 ```console
 Usage: dotnet fb [options]
 Options:
- -f|--feature <FEATURE_FILE>  Feature file which be translated
- -n|--namespace <NAMESPACE>   Namespace for new C# class
- -o|--output <OUTPUT_DIR>     Directory in which to find outputs
- -c|--class <CLASS_NMAE>      Name of new C# class
- -h|--help                    This help
+ -f|--feature <FEATURE_FILE> ï¿½Feature file which be translated
+ï¿½-n|--namespace <NAMESPACE> ï¿½ Namespace for new C# class
+ï¿½-o|--output <OUTPUT_DIR> ï¿½ ï¿½ Directory in which to find outputs
+ï¿½-c|--class <CLASS_NMAE> ï¿½ ï¿½ ï¿½Name of new C# class
+ï¿½-h|--help ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½This help
 ```
 
 ## Example
