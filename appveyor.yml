@@ -54,3 +54,17 @@ test_script:
   - cd "test\FluentBehave.Tools.Tests"
   - dotnet test -c %CONFIGURATION% --no-build
   
+after_build:
+  - dotnet pack "src\FluentBehave" -c %CONFIGURATION% -o "../../artifacts"
+  - dotnet pack "src\FluentBehave.Tools" -c %CONFIGURATION% -o "../../artifacts"
+
+artifacts:
+  - path: artifacts\**\*.*
+
+deploy:
+  provider: NuGet
+  api_key: 
+    secure: 14y7GJ6bBi+ePi58Xz7W6FNbPEaRkAvncBJZRccMmBhq00Jct5nWcCpRjd21aHUR
+  on:
+    branch:
+      - master
