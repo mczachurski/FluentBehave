@@ -4,9 +4,9 @@
     <Description>FluentBahave is a simple ASP.NET Core framework for Gherkin feature files.</Description>
     <AssemblyTitle>FluentBehave</AssemblyTitle>
     <NeutralLanguage>C#</NeutralLanguage>
-    <VersionPrefix>1.0.0-rc2</VersionPrefix>
+    <VersionPrefix>2.0.0</VersionPrefix>
     <Authors>@mczachurski</Authors>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyName>FluentBehave</AssemblyName>
     <PackageId>FluentBehave</PackageId>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
 
 </Project>
